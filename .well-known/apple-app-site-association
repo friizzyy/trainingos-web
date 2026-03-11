@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "CKM6QV9P96.com.trainingos.app",
+        "paths": ["/workout/*"]
+      }
+    ]
+  }
+}
