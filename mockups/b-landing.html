@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrainingOS — Your Workouts, Intelligently Planned</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0A0A0A;
+    --card: #141414;
+    --elevated: #1A1A1A;
+    --recessed: #0E0E0E;
+    --text-primary: #F5F5F0;
+    --text-secondary: #8A8A8A;
+    --text-tertiary: #7A7A7A;
+    --text-muted: #5E5E5E;
+    --text-faint: #3A3A3A;
+    --accent: #C9B99A;
+    --accent-light: #D8CCAF;
+    --accent-muted: #A69F8D;
+    --border: #1F1F1F;
+    --border-secondary: #181818;
+    --border-accent: #2A2520;
+    --icon-blue: #7DB8E8;
+    --icon-green: #6B9B7A;
+    --icon-purple: #A87DE8;
+    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+  }
+
+  /* Ambient glow */
+  body::before {
+    content: '';
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(ellipse at center, rgba(201,185,154,0.05) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Mockup label */
+  .mockup-label {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    color: var(--text-faint);
+    z-index: 9999;
+    text-transform: uppercase;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-secondary);
+  }
+
+  .nav-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.3px;
+  }
+
+  .nav-logo span {
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    padding-bottom: 4px;
+    position: relative;
+  }
+
+  .nav-links a:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-links a.active {
+    color: var(--accent);
+  }
+
+  .nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 100px 0 80px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(201,185,154,0.08);
+    border: 1px solid var(--border-accent);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    color: var(--text-primary);
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 540px;
+    margin: 0 auto 40px;
+    line-height: 1.7;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--accent);
+    color: #0A0A0A;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    text-decoration: none;
+    letter-spacing: 0.2px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(201,185,154,0.2), 0 1px 3px rgba(201,185,154,0.1);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent-light);
+    box-shadow: 0 6px 28px rgba(201,185,154,0.25), 0 2px 6px rgba(201,185,154,0.15);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 14px 36px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    margin-left: 12px;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+  }
+
+  /* Section headers */
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .section-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 12px;
+  }
+
+  .section-header p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* Features */
+  .features {
+    padding: 60px 0 80px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .feature-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    transition: border-color 0.25s, transform 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--border-accent);
+    transform: translateY(-2px);
+  }
+
+  .feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .feature-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .feature-icon.blue {
+    background: rgba(125,184,232,0.08);
+    border: 1px solid rgba(125,184,232,0.15);
+  }
+
+  .feature-icon.blue svg { stroke: var(--icon-blue); }
+
+  .feature-icon.green {
+    background: rgba(107,155,122,0.08);
+    border: 1px solid rgba(107,155,122,0.15);
+  }
+
+  .feature-icon.green svg { stroke: var(--icon-green); }
+
+  .feature-icon.purple {
+    background: rgba(168,125,232,0.08);
+    border: 1px solid rgba(168,125,232,0.15);
+  }
+
+  .feature-icon.purple svg { stroke: var(--icon-purple); }
+
+  .feature-icon.gold {
+    background: rgba(201,185,154,0.08);
+    border: 1px solid rgba(201,185,154,0.15);
+  }
+
+  .feature-icon.gold svg { stroke: var(--accent); }
+
+  .feature-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Pricing */
+  .pricing {
+    padding: 60px 0 80px;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 36px 32px;
+    position: relative;
+    transition: border-color 0.25s;
+  }
+
+  .pricing-card.recommended {
+    border-color: var(--border-accent);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -11px;
+    left: 32px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #0A0A0A;
+    background: var(--accent);
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  .pricing-card .plan-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+
+  .pricing-card .price {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    margin-bottom: 4px;
+  }
+
+  .pricing-card .price span {
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0;
+  }
+
+  .pricing-card .price-note {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    margin-bottom: 24px;
+  }
+
+  .pricing-card .savings {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+
+  .pricing-features li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pricing-features li::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: rgba(107,155,122,0.1);
+    border: 1px solid rgba(107,155,122,0.2);
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%236B9B7A' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 9px;
+  }
+
+  .pricing-card .btn-plan {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .btn-plan-outline {
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: transparent;
+  }
+
+  .btn-plan-outline:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+  }
+
+  .btn-plan-filled {
+    background: var(--accent);
+    color: #0A0A0A;
+    box-shadow: 0 4px 16px rgba(201,185,154,0.15);
+  }
+
+  .btn-plan-filled:hover {
+    background: var(--accent-light);
+    box-shadow: 0 6px 24px rgba(201,185,154,0.2);
+  }
+
+  /* CTA */
+  .cta-section {
+    padding: 80px 0 100px;
+    text-align: center;
+  }
+
+  .cta-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(201,185,154,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-card h2 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .cta-card p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border-secondary);
+    padding: 32px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--text-secondary);
+  }
+
+  .footer-copy {
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .nav-inner { padding: 0 20px; }
+    .container { padding: 0 20px; }
+    .nav-links { gap: 20px; }
+    .nav-links a { font-size: 12px; }
+
+    .hero { padding: 64px 0 48px; }
+    .hero h1 { font-size: 32px; letter-spacing: -0.8px; }
+    .hero p { font-size: 16px; }
+
+    .features-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+
+    .section-header h2 { font-size: 26px; }
+
+    .cta-card { padding: 48px 28px; }
+    .cta-card h2 { font-size: 24px; }
+
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+
+    .btn-secondary { margin-left: 0; margin-top: 12px; }
+    .hero-actions { display: flex; flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-label">MOCKUP B — REFINED CARDS</div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">Training<span>OS</span></div>
+    <ul class="nav-links">
+      <li><a href="b-landing.html" class="active">Home</a></li>
+      <li><a href="b-legal.html">Privacy</a></li>
+      <li><a href="b-support.html">Support</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Now Available on iOS</div>
+    <h1>Your workouts,<br><em>intelligently planned.</em></h1>
+    <p>TrainingOS imports from YouTube, builds smart programs, tracks every rep, and adapts with AI — all in one place.</p>
+    <div class="hero-actions">
+      <a href="#pricing" class="btn-primary">Start Training</a>
+      <a href="#features" class="btn-secondary">See Features</a>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-header">
+      <h2>Everything you need</h2>
+      <p>Four powerful tools, one seamless experience for your fitness journey.</p>
+    </div>
+    <div class="features-grid">
+
+      <!-- Import from YouTube -->
+      <div class="feature-card">
+        <div class="feature-icon blue">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V6M5 12l7-7 7 7"/>
+          </svg>
+        </div>
+        <h3>Import from YouTube</h3>
+        <p>Paste any workout video link and TrainingOS extracts the exercises, sets, and timing automatically. Your favorite creators, structured into real programs.</p>
+      </div>
+
+      <!-- Smart Builder -->
+      <div class="feature-card">
+        <div class="feature-icon green">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h3>Smart Builder</h3>
+        <p>Create custom workout programs with an intelligent builder that understands exercise pairing, rest periods, and progressive overload patterns.</p>
+      </div>
+
+      <!-- Track Everything -->
+      <div class="feature-card">
+        <div class="feature-icon purple">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+          </svg>
+        </div>
+        <h3>Track Everything</h3>
+        <p>Log weights, reps, sets, and duration with a clean interface built for speed. Review your history, see trends, and never lose a workout again.</p>
+      </div>
+
+      <!-- AI Coach -->
+      <div class="feature-card">
+        <div class="feature-icon gold">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+          </svg>
+        </div>
+        <h3>AI Coach</h3>
+        <p>Get personalized recommendations, form tips, and program adjustments based on your training data. Like having a coach that learns your patterns.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <h2>Simple, honest pricing</h2>
+      <p>Full access to every feature. Cancel anytime, no questions asked.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <!-- Monthly -->
+      <div class="pricing-card">
+        <div class="plan-name">Monthly</div>
+        <div class="price">$5.99<span> /mo</span></div>
+        <div class="price-note">Billed monthly</div>
+        <ul class="pricing-features">
+          <li>Unlimited workout imports</li>
+          <li>Smart program builder</li>
+          <li>Full tracking &amp; analytics</li>
+          <li>AI coaching insights</li>
+          <li>All future updates</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-outline">Get Started</a>
+      </div>
+
+      <!-- Yearly -->
+      <div class="pricing-card recommended">
+        <div class="pricing-badge">Recommended</div>
+        <div class="plan-name">Yearly</div>
+        <div class="price">$49.99<span> /yr</span></div>
+        <div class="savings">Save 30% — that's $4.17/mo</div>
+        <ul class="pricing-features">
+          <li>Everything in Monthly</li>
+          <li>Unlimited workout imports</li>
+          <li>Smart program builder</li>
+          <li>Full tracking &amp; analytics</li>
+          <li>AI coaching insights</li>
+        </ul>
+        <a href="#" class="btn-plan btn-plan-filled">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-card">
+      <h2>Ready to train smarter?</h2>
+      <p>Join TrainingOS and take control of your fitness with intelligent tools.</p>
+      <a href="#" class="btn-primary" style="position:relative;">Download on the App Store</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <ul class="footer-links">
+        <li><a href="b-landing.html">Home</a></li>
+        <li><a href="b-legal.html">Privacy Policy</a></li>
+        <li><a href="b-support.html">Support</a></li>
+      </ul>
+      <div class="footer-copy">&copy; 2026 TrainingOS. All rights reserved.</div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

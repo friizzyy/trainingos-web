@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrainingOS — Privacy Policy</title>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0A0A0A;
+    --card-bg: #141414;
+    --elevated: #1A1A1A;
+    --recessed: #0E0E0E;
+    --text-primary: #F5F5F0;
+    --text-secondary: #8A8A8A;
+    --text-tertiary: #7A7A7A;
+    --text-muted: #5E5E5E;
+    --text-faint: #3A3A3A;
+    --accent-gold: #C9B99A;
+    --accent-light: #D8CCAF;
+    --accent-muted: #A69F8D;
+    --border: #1F1F1F;
+    --border-secondary: #181818;
+    --border-accent: #2A2520;
+    --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Mockup label */
+  .mockup-label {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    z-index: 9999;
+    font-weight: 500;
+  }
+
+  /* Ambient glow */
+  .ambient-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, rgba(201,185,154,0.10) 0%, transparent 70%);
+    animation: pulseGlow 6s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .nav-logo span {
+    color: var(--accent-gold);
+    font-weight: 300;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--accent-gold); }
+
+  /* Page header — centered */
+  .page-header {
+    position: relative;
+    z-index: 1;
+    padding: 160px 24px 60px;
+    text-align: center;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  .page-header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-muted);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .page-header h1 {
+    font-size: 48px;
+    font-weight: 100;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .page-header .effective-date {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
+  .page-header .intro-text {
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* Card sections container */
+  .cards-container {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Legal card */
+  .legal-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 48px 48px 44px;
+    overflow: hidden;
+    transition: border-color 0.4s ease;
+  }
+
+  .legal-card:hover {
+    border-color: var(--border-accent);
+  }
+
+  /* Top gradient accent line on hover */
+  .legal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(201,185,154,0.2) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .legal-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Watermark number */
+  .card-watermark {
+    position: absolute;
+    top: 12px;
+    left: 24px;
+    font-size: 64px;
+    font-weight: 100;
+    color: rgba(201,185,154,0.06);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+  }
+
+  .card-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .legal-card h2 {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .legal-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+
+  .legal-card p:last-child {
+    margin-bottom: 0;
+  }
+
+  .legal-card ul {
+    list-style: none;
+    margin: 16px 0;
+  }
+
+  .legal-card ul li {
+    padding: 6px 0 6px 20px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-weight: 300;
+    position: relative;
+  }
+
+  .legal-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 1px;
+    background: var(--accent-gold);
+  }
+
+  .legal-card a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .legal-card a:hover {
+    color: var(--accent-light);
+  }
+
+  /* Footer */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 120px 48px 60px;
+    text-align: center;
+    border-top: 1px solid var(--border-secondary);
+  }
+
+  .footer-logo {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+  }
+
+  .footer-logo span {
+    color: var(--accent-gold);
+    font-weight: 300;
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin-bottom: 48px;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--text-tertiary);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+    font-weight: 400;
+  }
+
+  .footer-links a:hover { color: var(--accent-gold); }
+
+  .footer-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--border);
+    margin: 0 auto 48px;
+  }
+
+  .footer-bottom {
+    font-size: 12px;
+    color: var(--text-faint);
+    font-weight: 300;
+  }
+
+  .footer-bottom-logo {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-faint);
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .footer-bottom-logo span {
+    font-weight: 300;
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    nav {
+      padding: 20px 24px;
+    }
+
+    .nav-links {
+      gap: 20px;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+    }
+
+    .page-header {
+      padding: 120px 20px 40px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+    }
+
+    .page-header .intro-text {
+      font-size: 14px;
+    }
+
+    .cards-container {
+      padding: 0 16px 80px;
+      gap: 16px;
+    }
+
+    .legal-card {
+      padding: 36px 24px 32px;
+    }
+
+    .card-watermark {
+      font-size: 48px;
+      top: 8px;
+      left: 16px;
+    }
+
+    .legal-card h2 {
+      font-size: 18px;
+    }
+
+    footer {
+      padding: 80px 24px 48px;
+    }
+
+    .mockup-label {
+      font-size: 8px;
+      top: 10px;
+      right: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-label">MOCKUP C — LEGAL V1 (CARD SECTIONS)</div>
+<div class="ambient-glow"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="c-landing.html" class="nav-logo">Training<span>OS</span></a>
+  <ul class="nav-links">
+    <li><a href="c-landing.html">Home</a></li>
+    <li><a href="c-support.html">Support</a></li>
+    <li><a href="c-legal.html">Privacy</a></li>
+  </ul>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="page-header-eyebrow">Legal</div>
+  <h1>Privacy Policy</h1>
+  <div class="effective-date">Effective Date: March 1, 2026</div>
+  <p class="intro-text">TrainingOS ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application and related services.</p>
+</div>
+
+<!-- Card Sections -->
+<div class="cards-container">
+
+  <!-- Section 1 -->
+  <div class="legal-card">
+    <div class="card-watermark">01</div>
+    <div class="card-content">
+      <h2>Information We Collect</h2>
+      <p>We collect information that you provide directly to us when you create an account, use our services, or communicate with us. This includes:</p>
+      <ul>
+        <li>Account information such as your name, email address, and profile details</li>
+        <li>Workout data including exercises, sets, reps, weights, and training history</li>
+        <li>Device information such as your device type, operating system, and unique identifiers</li>
+        <li>Usage data including how you interact with our app, features used, and session duration</li>
+        <li>Payment information processed securely through Apple's In-App Purchase system</li>
+      </ul>
+      <p>We may also collect information automatically when you use our services, including log data, device identifiers, and analytics information.</p>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="legal-card">
+    <div class="card-watermark">02</div>
+    <div class="card-content">
+      <h2>How We Use Your Information</h2>
+      <p>We use the information we collect to provide, maintain, and improve our services. Specifically, we use your data to:</p>
+      <ul>
+        <li>Create and manage your account and provide personalized workout experiences</li>
+        <li>Generate AI-powered workout recommendations tailored to your training history and goals</li>
+        <li>Track your fitness progress and provide analytics on your performance over time</li>
+        <li>Process transactions and manage your subscription through Apple's payment systems</li>
+        <li>Send you service-related notifications, updates, and security alerts</li>
+        <li>Analyze usage patterns to improve app performance and develop new features</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="legal-card">
+    <div class="card-watermark">03</div>
+    <div class="card-content">
+      <h2>Third-Party Services</h2>
+      <p>Our app integrates with select third-party services to provide core functionality. These integrations include:</p>
+      <ul>
+        <li>YouTube API Services for importing workout video content and exercise data</li>
+        <li>Apple HealthKit for optional synchronization of health and activity data</li>
+        <li>Firebase by Google for authentication, database, and analytics services</li>
+        <li>RevenueCat for subscription management and payment processing</li>
+      </ul>
+      <p>Each third-party service operates under its own privacy policy. We encourage you to review the privacy policies of these services, particularly <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a> for YouTube API usage.</p>
+      <p>We do not sell, trade, or rent your personal information to third parties for marketing purposes.</p>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="legal-card">
+    <div class="card-watermark">04</div>
+    <div class="card-content">
+      <h2>Data Storage &amp; Security</h2>
+      <p>Your data is stored securely using industry-standard encryption protocols. We use Firebase Cloud Firestore as our primary database, which provides encryption at rest and in transit.</p>
+      <p>We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+      <ul>
+        <li>End-to-end encryption for data transmission between your device and our servers</li>
+        <li>Secure authentication using Firebase Authentication with support for biometric login</li>
+        <li>Regular security audits and vulnerability assessments of our infrastructure</li>
+        <li>Access controls limiting employee access to personal data on a need-to-know basis</li>
+      </ul>
+      <p>While we strive to protect your data, no method of electronic storage or transmission is 100% secure. We cannot guarantee absolute security.</p>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="legal-card">
+    <div class="card-watermark">05</div>
+    <div class="card-content">
+      <h2>YouTube Content</h2>
+      <p>TrainingOS uses YouTube API Services to enable workout importing from YouTube videos. By using this feature, you agree to be bound by the <a href="https://www.youtube.com/t/terms" target="_blank">YouTube Terms of Service</a>.</p>
+      <p>When you import a workout from YouTube, we access only the publicly available video metadata needed to extract exercise information. We do not:</p>
+      <ul>
+        <li>Access your YouTube account or personal YouTube data</li>
+        <li>Store YouTube video content on our servers</li>
+        <li>Share any YouTube-related data with additional third parties</li>
+        <li>Use YouTube data for advertising or unrelated commercial purposes</li>
+      </ul>
+      <p>You can revoke TrainingOS's access to YouTube data at any time through the <a href="https://security.google.com/settings/security/permissions" target="_blank">Google Security Settings</a> page.</p>
+    </div>
+  </div>
+
+  <!-- Section 6 -->
+  <div class="legal-card">
+    <div class="card-watermark">06</div>
+    <div class="card-content">
+      <h2>Your Rights</h2>
+      <p>You have certain rights regarding your personal information, subject to applicable law. These rights include:</p>
+      <ul>
+        <li>The right to access and receive a copy of your personal data</li>
+        <li>The right to correct or update inaccurate personal information</li>
+        <li>The right to delete your account and associated data</li>
+        <li>The right to restrict or object to certain data processing activities</li>
+        <li>The right to data portability — export your workout data in a standard format</li>
+      </ul>
+      <p>To exercise any of these rights, please contact us at <a href="mailto:privacy@trainingos.app">privacy@trainingos.app</a>. We will respond to your request within 30 days.</p>
+    </div>
+  </div>
+
+  <!-- Section 7 -->
+  <div class="legal-card">
+    <div class="card-watermark">07</div>
+    <div class="card-content">
+      <h2>Data Retention</h2>
+      <p>We retain your personal information for as long as your account is active or as needed to provide you with our services. Specifically:</p>
+      <ul>
+        <li>Account data is retained for the duration of your active subscription and for 90 days after account deletion</li>
+        <li>Workout history and training data are retained as long as your account remains active</li>
+        <li>Usage analytics data is retained in anonymized form for up to 24 months</li>
+        <li>Payment transaction records are retained as required by applicable financial regulations</li>
+      </ul>
+      <p>After the retention period, your data is permanently deleted or anonymized so that it can no longer be associated with you.</p>
+    </div>
+  </div>
+
+  <!-- Section 8 -->
+  <div class="legal-card">
+    <div class="card-watermark">08</div>
+    <div class="card-content">
+      <h2>Children's Privacy</h2>
+      <p>TrainingOS is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal data from a child under 13, we will take steps to delete that information promptly.</p>
+      <p>If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:privacy@trainingos.app">privacy@trainingos.app</a> so we can take appropriate action.</p>
+    </div>
+  </div>
+
+  <!-- Section 9 -->
+  <div class="legal-card">
+    <div class="card-watermark">09</div>
+    <div class="card-content">
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will:</p>
+      <ul>
+        <li>Update the "Effective Date" at the top of this policy</li>
+        <li>Notify you through the app or via email for significant changes</li>
+        <li>Provide a summary of key changes where appropriate</li>
+      </ul>
+      <p>We encourage you to review this Privacy Policy periodically. Your continued use of TrainingOS after any changes constitutes acceptance of the updated policy.</p>
+    </div>
+  </div>
+
+  <!-- Section 10 -->
+  <div class="legal-card">
+    <div class="card-watermark">10</div>
+    <div class="card-content">
+      <h2>Contact Us</h2>
+      <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+      <ul>
+        <li>Email: <a href="mailto:privacy@trainingos.app">privacy@trainingos.app</a></li>
+        <li>Support: <a href="mailto:support@trainingos.app">support@trainingos.app</a></li>
+        <li>Website: <a href="c-landing.html">trainingos.app</a></li>
+      </ul>
+      <p>We take every inquiry seriously and will respond within a reasonable timeframe, typically within 30 business days.</p>
+    </div>
+  </div>
+
+</div><!-- /.cards-container -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Training<span>OS</span></div>
+  <div class="footer-tagline">Intelligent fitness, beautifully designed</div>
+  <div class="footer-links">
+    <a href="c-landing.html">Home</a>
+    <a href="c-support.html">Support</a>
+    <a href="c-legal.html">Privacy Policy</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom-logo">Training<span>OS</span></div>
+  <div class="footer-bottom">&copy; 2026 TrainingOS. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
