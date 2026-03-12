@@ -19,94 +19,134 @@
   <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-  <div class="ambient"></div>
-  <div class="page-wrapper">
 
-    <nav class="nav">
-      <a href="../" class="nav-logo">Training<span>OS</span></a>
-      <div class="nav-links">
-        <a href="../privacy/">Privacy</a>
-        <a href="../terms/">Terms</a>
-        <a href="../support/" class="active">Support</a>
+<div class="ambient-glow"></div>
+
+<!-- Nav -->
+<nav>
+  <a href="../" class="nav-logo">Training<span>OS</span></a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../privacy/">Privacy</a></li>
+    <li><a href="../terms/">Terms</a></li>
+    <li><a href="../support/" class="active">Support</a></li>
+  </ul>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <div class="page-header-eyebrow">Help Center</div>
+  <h1>Support</h1>
+  <p>Need help with TrainingOS? Check the common questions below or reach out directly.</p>
+</section>
+
+<!-- Contact Card -->
+<section class="contact-section">
+  <div class="contact-card">
+    <h2>Get in Touch</h2>
+    <p>We typically respond within 24 hours. For the fastest response, please include your account email and a detailed description of your issue.</p>
+    <div class="contact-methods">
+      <div class="contact-method">
+        <svg viewBox="0 0 18 18" fill="none" stroke="#C9B99A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="14" height="10" rx="2"/>
+          <polyline points="2,4 9,10 16,4"/>
+        </svg>
+        <span>Email: <a href="mailto:support@trainingos.app">support@trainingos.app</a></span>
       </div>
-    </nav>
-
-    <div class="content">
-      <div class="badge">Help Center</div>
-      <h1>Support</h1>
-      <p class="subtitle">Need help with TrainingOS? Check the common questions below or reach out directly.</p>
-
-      <div class="contact-card">
-        <h3>Get in Touch</h3>
-        <p>We typically respond within 24 hours.</p>
-        <a href="mailto:support@trainingos.app" class="contact-btn">
-          Email Support
-        </a>
+      <div class="contact-method">
+        <svg viewBox="0 0 18 18" fill="none" stroke="#C9B99A" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="9" r="7"/>
+          <polyline points="9,5 9,9 12,11"/>
+        </svg>
+        <span>Response time: within 24 hours</span>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="section-divider" style="padding: 0; margin-bottom: 32px;">
-        <span class="dot"></span>
-        <span class="label">FAQ</span>
-        <span class="line"></span>
-      </div>
+<!-- FAQ Section -->
+<section class="faq-section">
+  <div class="faq-header">
+    <h2>FAQ</h2>
+    <p>Frequently asked questions</p>
+  </div>
 
-      <div class="faq-list">
-        <div class="faq-item">
-          <h3>How do I cancel my subscription?</h3>
-          <p>Open your device's Settings &gt; [Your Name] &gt; Subscriptions &gt; TrainingOS &gt; Cancel Subscription. Your access continues until the end of the current billing period.</p>
-        </div>
+  <div class="faq-grid">
 
-        <div class="faq-item">
-          <h3>How do I request a refund?</h3>
-          <p>Refunds are handled by Apple. Visit reportaproblem.apple.com, sign in with your Apple ID, find the TrainingOS charge, and request a refund.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Can I use TrainingOS for free?</h3>
-          <p>Yes. The free tier includes unlimited manual workout tracking, progress calendar, personal records, streak tracking, and 1 AI generation per month. Pro unlocks unlimited AI features.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>How does YouTube Import work?</h3>
-          <p>Paste any fitness video URL and our AI analyzes the video to extract exercises, sets, reps, and rest periods into a structured workout you can track and log.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>Is my data secure?</h3>
-          <p>Yes. Your data is stored with row-level security in Supabase, meaning only you can access your own data. All connections are encrypted via HTTPS.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>How do I delete my account?</h3>
-          <p>Visit our <a href="../delete-account/">account deletion page</a> for full details. Send an email to support@trainingos.app with the subject "Delete My Account" and we'll remove your account and all associated data within 30 days.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>The app is crashing or not loading</h3>
-          <p>Try force-closing and reopening the app. If the issue persists, make sure you're on the latest version from the App Store, then email us with your device model and iOS version.</p>
-        </div>
-
-        <div class="faq-item">
-          <h3>My subscription isn't showing as active</h3>
-          <p>Try restoring purchases: go to Profile &gt; Manage Subscription &gt; Restore Purchases. If it still doesn't work, email us with your Apple ID email and we'll investigate.</p>
-        </div>
-      </div>
-
-      <div class="divider"></div>
+    <!-- FAQ 1 -->
+    <div class="faq-item">
+      <div class="faq-number">01</div>
+      <h3>How do I cancel my subscription?</h3>
+      <p>Open your device's Settings &gt; [Your Name] &gt; Subscriptions &gt; TrainingOS &gt; Cancel Subscription. Your access continues until the end of the current billing period.</p>
     </div>
 
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-links">
-          <a href="../privacy/">Privacy Policy</a>
-          <a href="../terms/">Terms of Service</a>
-          <a href="../support/">Support</a>
-          <a href="mailto:support@trainingos.app">Contact</a>
-        </div>
-        <p class="copyright">&copy; 2026 TrainingOS. All rights reserved.</p>
-      </div>
-    </footer>
+    <!-- FAQ 2 -->
+    <div class="faq-item">
+      <div class="faq-number">02</div>
+      <h3>How do I request a refund?</h3>
+      <p>Refunds are handled by Apple. Visit reportaproblem.apple.com, sign in with your Apple ID, find the TrainingOS charge, and request a refund.</p>
+    </div>
+
+    <!-- FAQ 3 -->
+    <div class="faq-item">
+      <div class="faq-number">03</div>
+      <h3>Can I use TrainingOS for free?</h3>
+      <p>Yes. The free tier includes unlimited manual workout tracking, progress calendar, personal records, streak tracking, and 1 AI generation per month. Pro unlocks unlimited AI features.</p>
+    </div>
+
+    <!-- FAQ 4 -->
+    <div class="faq-item">
+      <div class="faq-number">04</div>
+      <h3>How does YouTube Import work?</h3>
+      <p>Paste any fitness video URL and our AI analyzes the video to extract exercises, sets, reps, and rest periods into a structured workout you can track and log.</p>
+    </div>
+
+    <!-- FAQ 5 -->
+    <div class="faq-item">
+      <div class="faq-number">05</div>
+      <h3>Is my data secure?</h3>
+      <p>Yes. Your data is stored with row-level security in Supabase, meaning only you can access your own data. All connections are encrypted via HTTPS.</p>
+    </div>
+
+    <!-- FAQ 6 -->
+    <div class="faq-item">
+      <div class="faq-number">06</div>
+      <h3>How do I delete my account?</h3>
+      <p>Visit our <a href="../delete-account/">account deletion page</a> for full details. Send an email to support@trainingos.app with the subject "Delete My Account" and we'll remove your account and all associated data within 30 days.</p>
+    </div>
+
+    <!-- FAQ 7 -->
+    <div class="faq-item">
+      <div class="faq-number">07</div>
+      <h3>The app is crashing or not loading</h3>
+      <p>Try force-closing and reopening the app. If the issue persists, make sure you're on the latest version from the App Store, then email us with your device model and iOS version.</p>
+    </div>
+
+    <!-- FAQ 8 -->
+    <div class="faq-item">
+      <div class="faq-number">08</div>
+      <h3>My subscription isn't showing as active</h3>
+      <p>Try restoring purchases: go to Profile &gt; Manage Subscription &gt; Restore Purchases. If it still doesn't work, email us with your Apple ID email and we'll investigate.</p>
+    </div>
 
   </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-logo">Training<span>OS</span></div>
+  <div class="footer-tagline">Intelligent fitness, beautifully designed</div>
+  <div class="footer-links">
+    <a href="../">Home</a>
+    <a href="../privacy/">Privacy Policy</a>
+    <a href="../terms/">Terms of Service</a>
+    <a href="../support/" class="active">Support</a>
+    <a href="mailto:support@trainingos.app">Contact</a>
+  </div>
+  <div class="footer-divider"></div>
+  <div class="footer-bottom-logo">Training<span>OS</span></div>
+  <div class="footer-bottom">&copy; 2026 TrainingOS. All rights reserved.</div>
+</footer>
+
 </body>
 </html>
